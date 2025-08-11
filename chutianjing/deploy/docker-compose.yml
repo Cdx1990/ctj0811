@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  api-gateway:
+    build: ../services/api-gateway
+    image: chutianjing/api-gateway:dev
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+      - risk-service
+
+  auth-service:
+    build: ../services/auth-service
+    image: chutianjing/auth-service:dev
+    environment:
+      - SPRING_SECURITY_USER_NAME=hbctj1995
+      - SPRING_SECURITY_USER_PASSWORD=code123
+    ports:
+      - "8081:8081"
+
+  risk-service:
+    build: ../services/risk-service
+    image: chutianjing/risk-service:dev
+    ports:
+      - "8082:8080"
+
+  frontend:
+    working_dir: /app
+    image: node:22-alpine
+    volumes:
+      - ../frontend:/app
+    command: sh -c "npm ci && npm run preview -- --host 0.0.0.0 --port 5173"
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api-gateway
