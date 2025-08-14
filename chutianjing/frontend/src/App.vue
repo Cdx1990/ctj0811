@@ -1,11 +1,21 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { computed } from 'vue'
+import { useAuthStore } from './stores/auth'
+
+const auth = useAuthStore()
+const username = computed(() => auth.user?.username || '')
+
+function onLogout() {
+	auth.logout()
+	location.href = '/login'
+}
 </script>
 
 <template>
   <div class="app-container">
     <aside class="sidebar p-4">
-      <h1 class="text-xl font-semibold mb-4">楚天镜</h1>
+      <h1 class="text-xl font-semibold mb-1">楚天镜</h1>
+      <div class="text-xs text-slate-400 mb-3" v-if="username">已登录：{{ username }}</div>
       <nav class="space-y-2 text-sm">
         <RouterLink class="nav-link" to="/risk/overview">全行资产质量信用风险预警</RouterLink>
         <RouterLink class="nav-link" to="/risk/corporate">公司信用风险预警</RouterLink>
@@ -19,6 +29,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink class="nav-link" to="/risk/gen-report">生成式风险报告</RouterLink>
         <RouterLink class="nav-link" to="/risk/settings">系统设置及用户管理</RouterLink>
       </nav>
+		<button v-if="username" @click="onLogout" class="mt-4 w-full text-left text-xs px-3 py-2 rounded bg-slate-900/60 border border-slate-800 hover:bg-slate-800/60">退出登录</button>
     </aside>
     <main class="content">
       <RouterView />
