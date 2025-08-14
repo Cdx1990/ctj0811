@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   { path: '/', redirect: '/risk/overview' },
+  { path: '/login', component: () => import('../views/Login.vue') },
   {
     path: '/risk',
     component: () => import('../views/RiskLayout.vue'),

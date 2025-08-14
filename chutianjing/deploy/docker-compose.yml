@@ -27,9 +27,11 @@ services:
   frontend:
     working_dir: /app
     image: node:22-alpine
+    environment:
+      - API_GATEWAY_URL=http://api-gateway:8080
     volumes:
       - ../frontend:/app
-    command: sh -c "npm ci && npm run preview -- --host 0.0.0.0 --port 5173"
+    command: sh -c "npm ci && npm run dev -- --host 0.0.0.0 --port 5173"
     ports:
       - "5173:5173"
     depends_on:
