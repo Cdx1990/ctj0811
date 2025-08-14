@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import axios from 'axios'
 
 const routes = [
-  { path: '/', redirect: '/risk/overview' },
+  { path: '/', redirect: '/login' },
+  { path: '/login', component: () => import('../views/Login.vue'), meta: { fullPage: true, public: true } },
   { path: '/dashboard', component: () => import('../views/Dashboard.vue'), meta: { fullPage: true } },
   {
     path: '/risk',
@@ -25,6 +27,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+
+router.beforeEach(async (to) => {
+  if (to.meta.public) return true
+  const token = localStorage.getItem('basicAuth') || sessionStorage.getItem('basicAuth')
+  if (!token) return '/login'
+  // 可选：轻量校验令牌有效性
+  axios.defaults.headers.common['Authorization'] = token
+  return true
 })
 
 export default router
