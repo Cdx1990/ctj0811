@@ -2,8 +2,8 @@ package com.chutianjing.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -14,10 +14,28 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/actuator/**").permitAll()
+                .requestMatchers(
+                    "/actuator/**",
+                    "/login",
+                    "/login.html",
+                    "/css/**",
+                    "/js/**",
+                    "/images/**"
+                ).permitAll()
                 .anyRequest().authenticated()
             )
-            .httpBasic(Customizer.withDefaults());
+            .formLogin(form -> form
+                .loginPage("/login.html")
+                .defaultSuccessUrl("/api/auth/me", true)
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
+            )
+            .httpBasic(AbstractHttpConfigurer::disable);
+
         return http.build();
     }
 }
