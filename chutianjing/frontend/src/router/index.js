@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   { path: '/', redirect: '/risk/overview' },
+  { path: '/dashboard', component: () => import('../views/Dashboard.vue'), meta: { fullPage: true } },
   {
     path: '/risk',
     component: () => import('../views/RiskLayout.vue'),
