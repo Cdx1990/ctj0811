@@ -19,6 +19,10 @@ const routes = [
       { path: 'settings', component: () => import('../views/Settings.vue') },
     ],
   },
+  {
+    path: '/data-quality',
+    component: () => import('../views/DataQuality.vue'),
+  },
 ]
 
 const router = createRouter({
