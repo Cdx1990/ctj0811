@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据资产质量分析 Excel 模板演示</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        .content {
+            padding: 40px;
+        }
+        .demo-section {
+            margin-bottom: 40px;
+        }
+        .demo-section h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+        }
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
+        }
+        .btn-info {
+            background: linear-gradient(135deg, #17a2b8, #138496);
+            color: white;
+        }
+        .btn-info:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(23, 162, 184, 0.3);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+        }
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .highlight {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .highlight strong {
+            color: #856404;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 数据资产质量分析</h1>
+            <p>Excel 模板生成器演示</p>
+        </div>
+        
+        <div class="content">
+            <div class="demo-section">
+                <h2>🎯 功能概述</h2>
+                <p>本系统提供了强大的数据资产质量分析Excel模板生成功能，支持生成完整版和简化版两种报告格式。</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>📋 完整版报告</h3>
+                        <p>包含6个工作表的详细分析报告，涵盖概览、详细数据、维度分析、问题分析、趋势分析和改进建议。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📄 简化版报告</h3>
+                        <p>包含1个工作表的基础数据报告，适合快速查看和分享核心质量指标。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎨 科技风格设计</h3>
+                        <p>采用现代化的科技风格界面设计，提供优秀的用户体验和视觉效果。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📊 多维度分析</h3>
+                        <p>支持完整性、准确性、一致性、及时性、有效性等多维度质量分析。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h2>🚀 快速体验</h2>
+                <p>点击下面的按钮来体验Excel模板生成功能：</p>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="generateFullReport()">
+                        📥 生成完整版报告
+                    </button>
+                    <button class="btn btn-success" onclick="generateSimpleReport()">
+                        📋 生成简化版报告
+                    </button>
+                    <button class="btn btn-info" onclick="showTemplateInfo()">
+                        ℹ️ 查看模板信息
+                    </button>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h2>📊 报告内容预览</h2>
+                
+                <h3>完整版报告包含以下工作表：</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>工作表名称</th>
+                            <th>主要内容</th>
+                            <th>数据量</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>概览</td>
+                            <td>关键指标、质量等级分布、数据源排名</td>
+                            <td>20+ 行</td>
+                        </tr>
+                        <tr>
+                            <td>详细数据</td>
+                            <td>所有数据资产的详细质量信息</td>
+                            <td>8+ 行</td>
+                        </tr>
+                        <tr>
+                            <td>维度分析</td>
+                            <td>各质量维度的统计分析</td>
+                            <td>15+ 行</td>
+                        </tr>
+                        <tr>
+                            <td>问题分析</td>
+                            <td>质量问题分布和趋势</td>
+                            <td>20+ 行</td>
+                        </tr>
+                        <tr>
+                            <td>趋势分析</td>
+                            <td>质量变化趋势和预测</td>
+                            <td>15+ 行</td>
+                        </tr>
+                        <tr>
+                            <td>改进建议</td>
+                            <td>具体的改进方案和风险评估</td>
+                            <td>25+ 行</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-section">
+                <h2>💻 技术实现</h2>
+                <p>本系统基于以下技术栈构建：</p>
+                
+                <div class="code-block">
+// 核心依赖
+import * as XLSX from 'xlsx'
+import { saveAs } from 'file-saver'
+
+// 生成完整版报告
+const generateDataQualityReport = (data) => {
+  const template = new DataQualityExcelTemplate()
+  template.generateFullReport(data)
+  template.exportToFile()
+}
+
+// 生成简化版报告
+const generateSimpleReport = (data) => {
+  const workbook = XLSX.utils.book_new()
+  // ... 生成逻辑
+  saveAs(blob, filename)
+}
+                </div>
+
+                <div class="highlight">
+                    <strong>✨ 主要特性：</strong>
+                    <ul>
+                        <li>自动格式化：自动设置合适的列宽和数据格式</li>
+                        <li>中文支持：完全支持中文字符和日期格式</li>
+                        <li>模块化设计：易于扩展和自定义</li>
+                        <li>浏览器兼容：支持所有现代浏览器</li>
+                        <li>数据安全：客户端生成，不上传服务器</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h2>📈 数据示例</h2>
+                <p>以下是系统处理的数据结构示例：</p>
+                
+                <div class="code-block">
+{
+  "overallScore": 87.5,
+  "dataVolume": "2.3TB",
+  "issuesCount": 156,
+  "complianceRate": 94.2,
+  "tableData": [
+    {
+      "name": "客户基础信息",
+      "score": 92,
+      "completeness": 95,
+      "accuracy": 89,
+      "consistency": 94,
+      "timeliness": 90,
+      "issues": 8,
+      "status": "优秀"
+    }
+  ]
+}
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 数据资产质量分析系统 | 基于 Vue 3 + Chart.js + XLSX 构建</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        // 模拟数据
+        const mockData = {
+            overallScore: 87.5,
+            dataVolume: '2.3TB',
+            issuesCount: 156,
+            complianceRate: 94.2,
+            tableData: [
+                { name: '客户基础信息', score: 92, completeness: 95, accuracy: 89, consistency: 94, timeliness: 90, issues: 8, status: '优秀' },
+                { name: '交易流水数据', score: 88, completeness: 92, accuracy: 85, consistency: 90, timeliness: 85, issues: 15, status: '良好' },
+                { name: '风险评级数据', score: 95, completeness: 98, accuracy: 93, consistency: 96, timeliness: 92, issues: 5, status: '优秀' },
+                { name: '产品配置信息', score: 82, completeness: 88, accuracy: 80, consistency: 85, timeliness: 75, issues: 23, status: '一般' },
+                { name: '财务核算数据', score: 90, completeness: 93, accuracy: 88, consistency: 92, timeliness: 87, issues: 12, status: '良好' },
+                { name: '监管报送数据', score: 97, completeness: 99, accuracy: 96, consistency: 98, timeliness: 94, issues: 3, status: '优秀' },
+                { name: '营销活动数据', score: 78, completeness: 85, accuracy: 75, consistency: 80, timeliness: 70, issues: 31, status: '一般' },
+                { name: '系统日志数据', score: 85, completeness: 90, accuracy: 82, consistency: 88, timeliness: 80, issues: 18, status: '良好' }
+            ]
+        };
+
+        // 生成完整版报告
+        function generateFullReport() {
+            const workbook = XLSX.utils.book_new();
+            
+            // 概览工作表
+            const overviewData = [
+                ['数据资产质量分析报告'],
+                [''],
+                ['报告生成时间', new Date().toLocaleString('zh-CN')],
+                ['数据统计周期', '本月'],
+                [''],
+                ['关键指标概览'],
+                ['指标名称', '当前值', '上期值', '变化幅度', '状态'],
+                ['整体质量评分', `${mockData.overallScore}%`, '85.2%', '+2.3%', '优秀'],
+                ['数据总量', mockData.dataVolume, '2.1TB', '+5.2%', '良好'],
+                ['质量问题数', mockData.issuesCount, '178', '-12.5%', '改善'],
+                ['合规率', `${mockData.complianceRate}%`, '92.4%', '+1.8%', '优秀']
+            ];
+            
+            const overviewWs = XLSX.utils.aoa_to_sheet(overviewData);
+            overviewWs['!cols'] = [{ wch: 20 }, { wch: 15 }, { wch: 15 }, { wch: 15 }, { wch: 15 }];
+            XLSX.utils.book_append_sheet(workbook, overviewWs, '概览');
+            
+            // 详细数据工作表
+            const detailData = [
+                ['数据资产详细质量报告'],
+                [''],
+                ['数据资产', '质量评分', '完整性', '准确性', '一致性', '及时性', '问题数', '状态']
+            ];
+            
+            mockData.tableData.forEach(item => {
+                detailData.push([
+                    item.name,
+                    `${item.score}%`,
+                    `${item.completeness}%`,
+                    `${item.accuracy}%`,
+                    `${item.consistency}%`,
+                    `${item.timeliness}%`,
+                    item.issues,
+                    item.status
+                ]);
+            });
+            
+            const detailWs = XLSX.utils.aoa_to_sheet(detailData);
+            detailWs['!cols'] = [
+                { wch: 25 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, 
+                { wch: 12 }, { wch: 12 }, { wch: 10 }, { wch: 10 }
+            ];
+            XLSX.utils.book_append_sheet(workbook, detailWs, '详细数据');
+            
+            // 导出文件
+            const now = new Date();
+            const filename = `数据资产质量分析报告_${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2,'0')}${now.getDate().toString().padStart(2,'0')}.xlsx`;
+            const wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+            const blob = new Blob([wbout], { type: 'application/octet-stream' });
+            saveAs(blob, filename);
+            
+            alert('完整版报告已生成并下载！');
+        }
+
+        // 生成简化版报告
+        function generateSimpleReport() {
+            const workbook = XLSX.utils.book_new();
+            
+            const simpleData = [
+                ['数据资产质量分析报告'],
+                [''],
+                ['数据资产', '质量评分', '完整性', '准确性', '一致性', '及时性', '问题数', '状态'],
+                ...mockData.tableData.map(item => [
+                    item.name,
+                    `${item.score}%`,
+                    `${item.completeness}%`,
+                    `${item.accuracy}%`,
+                    `${item.consistency}%`,
+                    `${item.timeliness}%`,
+                    item.issues,
+                    item.status
+                ])
+            ];
+            
+            const ws = XLSX.utils.aoa_to_sheet(simpleData);
+            ws['!cols'] = [
+                { wch: 25 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, 
+                { wch: 12 }, { wch: 12 }, { wch: 10 }, { wch: 10 }
+            ];
+            
+            XLSX.utils.book_append_sheet(workbook, ws, '数据质量报告');
+            
+            const now = new Date();
+            const filename = `数据质量报告_${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2,'0')}${now.getDate().toString().padStart(2,'0')}.xlsx`;
+            const wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+            const blob = new Blob([wbout], { type: 'application/octet-stream' });
+            saveAs(blob, filename);
+            
+            alert('简化版报告已生成并下载！');
+        }
+
+        // 显示模板信息
+        function showTemplateInfo() {
+            alert(`Excel模板信息：
+
+📊 完整版报告包含6个工作表：
+1. 概览 - 关键指标和统计信息
+2. 详细数据 - 所有数据资产的质量详情
+3. 维度分析 - 各质量维度的分析
+4. 问题分析 - 质量问题分布和趋势
+5. 趋势分析 - 质量变化趋势和预测
+6. 改进建议 - 具体的改进方案
+
+📋 简化版报告包含1个工作表：
+- 数据质量报告 - 核心质量指标
+
+✨ 特性：
+- 自动格式化列宽
+- 中文支持
+- 日期时间戳
+- 百分比格式
+- 状态标识`);
+        }
+    </script>
+</body>
+</html>

@@ -10,7 +10,11 @@
         <div class="header-actions">
           <button @click="exportToExcel" class="export-btn">
             <span class="btn-icon">📥</span>
-            导出Excel
+            导出完整报告
+          </button>
+          <button @click="exportSimpleExcel" class="export-btn simple">
+            <span class="btn-icon">📋</span>
+            导出简化版
           </button>
           <button @click="refreshData" class="refresh-btn">
             <span class="btn-icon">🔄</span>
@@ -206,8 +210,7 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue'
 import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, BarController, BarElement, DoughnutController, ArcElement, Tooltip, Legend } from 'chart.js'
-import * as XLSX from 'xlsx'
-import { saveAs } from 'file-saver'
+import { generateDataQualityReport, generateSimpleReport } from '../utils/excelTemplate.js'
 
 // 注册Chart.js组件
 Chart.register(
@@ -299,45 +302,30 @@ const getStatusClass = (status) => {
 
 const exportToExcel = () => {
   // 准备导出数据
-  const exportData = filteredTableData.value.map(item => ({
-    '数据资产': item.name,
-    '质量评分': item.score + '%',
-    '完整性': item.completeness + '%',
-    '准确性': item.accuracy + '%',
-    '一致性': item.consistency + '%',
-    '及时性': item.timeliness + '%',
-    '问题数': item.issues,
-    '状态': item.status
-  }))
+  const exportData = {
+    overallScore: metrics.value.overallScore,
+    dataVolume: metrics.value.dataVolume,
+    issuesCount: metrics.value.issuesCount,
+    complianceRate: metrics.value.complianceRate,
+    tableData: filteredTableData.value
+  }
 
-  // 创建工作簿
-  const wb = XLSX.utils.book_new()
-  const ws = XLSX.utils.json_to_sheet(exportData)
+  // 生成完整版Excel报告
+  generateDataQualityReport(exportData)
+}
 
-  // 设置列宽
-  const colWidths = [
-    { wch: 20 }, // 数据资产
-    { wch: 12 }, // 质量评分
-    { wch: 12 }, // 完整性
-    { wch: 12 }, // 准确性
-    { wch: 12 }, // 一致性
-    { wch: 12 }, // 及时性
-    { wch: 10 }, // 问题数
-    { wch: 10 }  // 状态
-  ]
-  ws['!cols'] = colWidths
+const exportSimpleExcel = () => {
+  // 准备导出数据
+  const exportData = {
+    overallScore: metrics.value.overallScore,
+    dataVolume: metrics.value.dataVolume,
+    issuesCount: metrics.value.issuesCount,
+    complianceRate: metrics.value.complianceRate,
+    tableData: filteredTableData.value
+  }
 
-  // 添加工作表
-  XLSX.utils.book_append_sheet(wb, ws, '数据质量报告')
-
-  // 生成文件名
-  const now = new Date()
-  const fileName = `数据资产质量分析报告_${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2,'0')}${now.getDate().toString().padStart(2,'0')}.xlsx`
-
-  // 导出文件
-  const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' })
-  const blob = new Blob([wbout], { type: 'application/octet-stream' })
-  saveAs(blob, fileName)
+  // 生成简化版Excel报告
+  generateSimpleReport(exportData)
 }
 
 const refreshData = () => {
@@ -530,6 +518,10 @@ onMounted(() => {
 
 .export-btn {
   @apply bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow-lg hover:shadow-xl;
+}
+
+.export-btn.simple {
+  @apply bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500;
 }
 
 .refresh-btn {
