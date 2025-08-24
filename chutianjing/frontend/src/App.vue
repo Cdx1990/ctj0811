@@ -18,6 +18,8 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink class="nav-link" to="/risk/portfolio">组合风险预警</RouterLink>
         <RouterLink class="nav-link" to="/risk/gen-report">生成式风险报告</RouterLink>
         <RouterLink class="nav-link" to="/risk/settings">系统设置及用户管理</RouterLink>
+        <div class="border-t border-slate-700 my-4"></div>
+        <RouterLink class="nav-link" to="/data-quality">📊 数据资产质量分析</RouterLink>
       </nav>
     </aside>
     <main class="content">
